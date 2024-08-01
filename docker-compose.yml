@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:latest
+    mem_limit: 512m
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=db_auth
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=richmond
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -u postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 60
